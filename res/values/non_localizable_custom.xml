@@ -90,6 +90,6 @@
 	<string name="temp_photo_name_with_date">linphone-android-photo-%s.jpg</string>
 
 	<bool name="enable_call_notification">true</bool>
-	<bool name="kill_service_with_task_manager">true</bool>
+	<bool name="kill_service_with_task_manager">false</bool>
 </resources>
 

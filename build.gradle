@@ -13,14 +13,6 @@ dependencies {
 }
 
 android {
-    signingConfigs {
-        release {
-            keyAlias 'linphone'
-            keyPassword '1110yuji'
-            storeFile file('/home/boom/AndroidStudioProjects/Boom.jks')
-            storePassword '1110yuji'
-        }
-    }
     compileSdkVersion 21
     buildToolsVersion '21.1.2'
 
@@ -74,7 +66,6 @@ android {
             renderscriptDebuggable false
             minifyEnabled false
             zipAlignEnabled true
-            signingConfig signingConfigs.release
         }
     }
 }

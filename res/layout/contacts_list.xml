@@ -110,7 +110,10 @@
 			android:cacheColorHint="@color/transparent"
 			android:fastScrollAlwaysVisible="true"
 			android:fastScrollEnabled="true"
-			android:dividerHeight="1dp" />
+			android:dividerHeight="1dp"
+			android:focusable="true"
+			android:focusableInTouchMode="true"
+			android:listSelector="@drawable/list_selector" />
 
 		<TextView
 			android:id="@+id/noSipContact"
