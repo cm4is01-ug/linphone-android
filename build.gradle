@@ -13,16 +13,28 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "20.0.0"
+    signingConfigs {
+        release {
+            keyAlias 'linphone'
+            keyPassword '1110yuji'
+            storeFile file('/home/boom/AndroidStudioProjects/Boom.jks')
+            storePassword '1110yuji'
+        }
+    }
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
+
+    lintOptions {
+        disable 'MissingTranslation'
+    }
 
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['submodules/linphone/mediastreamer2/java/src','submodules/linphone/java/j2se','submodules/linphone/java/common','submodules/linphone/java/impl','submodules/externals/axmlrpc/src/main/java','submodules/linphone/coreapi/help/java','src']
-            resources.srcDirs = ['submodules/linphone/mediastreamer2/java/src','submodules/linphone/java/j2se','submodules/linphone/java/common','submodules/linphone/java/impl','submodules/externals/axmlrpc/src/main/java','submodules/linphone/coreapi/help/java','src']
-            aidl.srcDirs = ['submodules/linphone/mediastreamer2/java/src','submodules/linphone/java/j2se','submodules/linphone/java/common','submodules/linphone/java/impl','submodules/externals/axmlrpc/src/main/java','submodules/linphone/coreapi/help/java','src']
-            renderscript.srcDirs = ['submodules/linphone/mediastreamer2/java/src','submodules/linphone/java/j2se','submodules/linphone/java/common','submodules/linphone/java/impl','submodules/externals/axmlrpc/src/main/java','submodules/linphone/coreapi/help/java','src']
+            java.srcDirs = ['submodules/linphone/mediastreamer2/java/src', 'submodules/linphone/java/j2se', 'submodules/linphone/java/common', 'submodules/linphone/java/impl', 'submodules/externals/axmlrpc/src/main/java', 'submodules/linphone/coreapi/help/java', 'src']
+            resources.srcDirs = ['submodules/linphone/mediastreamer2/java/src', 'submodules/linphone/java/j2se', 'submodules/linphone/java/common', 'submodules/linphone/java/impl', 'submodules/externals/axmlrpc/src/main/java', 'submodules/linphone/coreapi/help/java', 'src']
+            aidl.srcDirs = ['submodules/linphone/mediastreamer2/java/src', 'submodules/linphone/java/j2se', 'submodules/linphone/java/common', 'submodules/linphone/java/impl', 'submodules/externals/axmlrpc/src/main/java', 'submodules/linphone/coreapi/help/java', 'src']
+            renderscript.srcDirs = ['submodules/linphone/mediastreamer2/java/src', 'submodules/linphone/java/j2se', 'submodules/linphone/java/common', 'submodules/linphone/java/impl', 'submodules/externals/axmlrpc/src/main/java', 'submodules/linphone/coreapi/help/java', 'src']
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
             jniLibs.srcDir 'libs'
@@ -41,5 +53,28 @@ android {
         // by a similar customization.
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
+    }
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 21
+    }
+    productFlavors {
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            jniDebuggable false
+            renderscriptDebuggable false
+            minifyEnabled false
+            zipAlignEnabled true
+        }
+        release {
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            minifyEnabled false
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
+        }
     }
 }
