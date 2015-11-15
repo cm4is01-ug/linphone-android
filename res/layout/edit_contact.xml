@@ -23,7 +23,9 @@
 		    android:layout_height="match_parent"
 		    android:scaleType="centerCrop"
 		    android:adjustViewBounds="true"
-		    android:layout_weight="1"/>
+		    android:layout_weight="1"
+			android:clickable="true"
+			android:focusable="true" />
         
         <TextView 
             android:contentDescription="@string/content_description_validate"
@@ -38,7 +40,9 @@
 		    android:layout_height="match_parent"
 		    android:scaleType="centerCrop"
 		    android:adjustViewBounds="true"
-		    android:layout_weight="1"/>
+		    android:layout_weight="1"
+			android:focusable="true"
+			android:clickable="true" />
         
     </LinearLayout>
     
@@ -82,7 +86,8 @@
 				        android:background="@drawable/chat_fast_address_background"
 				        android:gravity="left"
 				        android:paddingRight="5dp"
-				        android:inputType="textPersonName|textCapWords"/>
+				        android:inputType="textPersonName|textCapWords"
+						android:focusable="true" />
 			        
 			        <EditText
             			android:textCursorDrawable="@null"
@@ -94,7 +99,8 @@
 				        android:background="@drawable/chat_fast_address_background"
 				        android:gravity="left"
 				        android:paddingRight="5dp"
-				        android:inputType="textPersonName|textCapWords"/>
+				        android:inputType="textPersonName|textCapWords"
+						android:focusable="true" />
 		            
 		        </LinearLayout>
 		        

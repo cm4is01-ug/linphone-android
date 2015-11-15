@@ -438,7 +438,7 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 
 	public boolean startHistoryDetail() {
 		int position = historyList.getSelectedItemPosition();
-		if (isEditMode || position < 0 || position > mLogs.size() - 1) {
+		if (!historyList.isFocused() || isEditMode || position < 0 || position > mLogs.size() - 1) {
 			return false;
 		} else {
 			final LinphoneCallLog log = mLogs.get(position);

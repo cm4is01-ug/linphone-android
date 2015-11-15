@@ -27,7 +27,8 @@ public class RemoteProvisioningFragment extends Fragment implements OnClickListe
 		remoteProvisioningUrl = (EditText) view.findViewById(R.id.setup_remote_provisioning_url);
 		apply = (ImageView) view.findViewById(R.id.setup_apply);
 		apply.setOnClickListener(this);
-		
+
+		remoteProvisioningUrl.requestFocusFromTouch();
 		return view;
 	}
 	

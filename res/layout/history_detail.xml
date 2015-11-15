@@ -100,9 +100,7 @@
 	            android:adjustViewBounds="true"
 	            android:src="@drawable/button"
 				android:layout_centerInParent="true"
-				android:clickable="true"
-				android:focusable="true"
-				android:focusableInTouchMode="true" />
+				android:focusable="true" />
 	        
 	        <TextView 
 			    android:layout_width="wrap_content"
@@ -130,9 +128,7 @@
 	            android:adjustViewBounds="true"
 	            android:src="@drawable/button"
 				android:layout_centerInParent="true"
-				android:clickable="true"
-				android:focusable="true"
-				android:focusableInTouchMode="true" />
+				android:focusable="true" />
 	        
 	        <TextView 
 			    android:layout_width="wrap_content"
@@ -160,9 +156,7 @@
 	            android:adjustViewBounds="true"
 	            android:src="@drawable/button"
 				android:layout_centerInParent="true"
-				android:clickable="true"
-				android:focusable="true"
-				android:focusableInTouchMode="true" />
+				android:focusable="true" />
 	        
 	        <TextView 
 			    android:layout_width="wrap_content"
