@@ -151,7 +151,8 @@ public class WizardFragment extends Fragment {
     	        }
     	    }
     	}
-    	
+
+		username.requestFocusFromTouch();
 		return view;
 	}
 	

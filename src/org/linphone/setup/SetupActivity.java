@@ -42,6 +42,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 /**
@@ -49,7 +50,7 @@ import android.widget.Toast;
  */
 public class SetupActivity extends FragmentActivity implements OnClickListener {
 	private static SetupActivity instance;
-	private RelativeLayout back, next, cancel;
+	private ImageView back, next, cancel;
 	private SetupFragmentsEnum currentFragment;
 	private SetupFragmentsEnum firstFragment;
 	private Fragment fragment;
@@ -95,9 +96,10 @@ public class SetupActivity extends FragmentActivity implements OnClickListener {
 				}
         	}
         };
-        
+
+		back.requestFocusFromTouch();
         instance = this;
-	};
+	}
 	
 	@Override
 	protected void onResume() {
@@ -130,11 +132,11 @@ public class SetupActivity extends FragmentActivity implements OnClickListener {
 	}
 	
 	private void initUI() {
-		back = (RelativeLayout) findViewById(R.id.setup_back);
+		back = (ImageView) findViewById(R.id.setup_back);
 		back.setOnClickListener(this);
-		next = (RelativeLayout) findViewById(R.id.setup_next);
+		next = (ImageView) findViewById(R.id.setup_next);
 		next.setOnClickListener(this);
-		cancel = (RelativeLayout) findViewById(R.id.setup_cancel);
+		cancel = (ImageView) findViewById(R.id.setup_cancel);
 		cancel.setOnClickListener(this);
 	}
 	
@@ -169,8 +171,8 @@ public class SetupActivity extends FragmentActivity implements OnClickListener {
 					changeFragment(fragment);
 					currentFragment = SetupFragmentsEnum.MENU;
 					
-					next.setVisibility(View.GONE);
-					back.setVisibility(View.VISIBLE);
+					((RelativeLayout)next.getParent()).setVisibility(View.GONE);
+					((RelativeLayout)back.getParent()).setVisibility(View.VISIBLE);
 				} else if (currentFragment == SetupFragmentsEnum.WIZARD_CONFIRM) {
 					finish();
 				}
@@ -196,8 +198,8 @@ public class SetupActivity extends FragmentActivity implements OnClickListener {
 			changeFragment(fragment);
 			currentFragment = SetupFragmentsEnum.WELCOME;
 			
-			next.setVisibility(View.VISIBLE);
-			back.setVisibility(View.GONE);
+			((RelativeLayout)next.getParent()).setVisibility(View.VISIBLE);
+			((RelativeLayout)back.getParent()).setVisibility(View.GONE);
 		} else if (currentFragment == SetupFragmentsEnum.GENERIC_LOGIN 
 				|| currentFragment == SetupFragmentsEnum.LINPHONE_LOGIN 
 				|| currentFragment == SetupFragmentsEnum.WIZARD 
@@ -218,10 +220,11 @@ public class SetupActivity extends FragmentActivity implements OnClickListener {
 			fragment.enableEcCalibrationResultSending(sendEcCalibrationResult);
 			changeFragment(fragment);
 			currentFragment = SetupFragmentsEnum.ECHO_CANCELLER_CALIBRATION;
-			back.setVisibility(View.VISIBLE);
-			next.setVisibility(View.GONE);
+			((RelativeLayout)back.getParent()).setVisibility(View.VISIBLE);
+			((RelativeLayout)next.getParent()).setVisibility(View.GONE);
 			next.setEnabled(false);
 			cancel.setEnabled(false);
+			back.requestFocusFromTouch();
 		} else {
 			success();
 		}		
@@ -385,9 +388,9 @@ public class SetupActivity extends FragmentActivity implements OnClickListener {
 		
 		currentFragment = SetupFragmentsEnum.WIZARD_CONFIRM;
 
-		next.setVisibility(View.VISIBLE);
+		((RelativeLayout)next.getParent()).setVisibility(View.VISIBLE);
 		next.setEnabled(false);
-		back.setVisibility(View.GONE);
+		((RelativeLayout)back.getParent()).setVisibility(View.GONE);
 	}
 	
 	public void isAccountVerified(String username) {
