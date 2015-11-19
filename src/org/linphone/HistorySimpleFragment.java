@@ -93,7 +93,8 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
         
         ok = (TextView) view.findViewById(R.id.ok);
         ok.setOnClickListener(this);
-        
+
+		historyList.requestFocusFromTouch();
 		return view;
     }
 	
@@ -143,6 +144,7 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 		if (!hideHistoryListAndDisplayMessageIfEmpty()) {
 			historyList.setAdapter(new CallHistoryAdapter(getActivity()));
 		}
+		historyList.requestFocusFromTouch();
 	}
 
 	@Override
@@ -432,5 +434,45 @@ public class HistorySimpleFragment extends Fragment implements OnClickListener, 
 
 			return view;
 		}		  
-	  }
+	}
+
+	public boolean startHistoryDetail() {
+		int position = historyList.getSelectedItemPosition();
+		if (!historyList.isFocused() || isEditMode || position < 0 || position > mLogs.size() - 1) {
+			return false;
+		} else {
+			final LinphoneCallLog log = mLogs.get(position);
+			final LinphoneAddress address;
+			if (log.getDirection() == CallDirection.Incoming) {
+				address = log.getFrom();
+			} else {
+				address = log.getTo();
+			}
+			Contact c = ContactsManager.getInstance().findContactWithAddress(getActivity().getContentResolver(), address);
+			final String sipUri = address.asStringUriOnly();
+			if (LinphoneActivity.isInstanciated()) {
+				LinphoneActivity.instance().displayHistoryDetail(sipUri, log);
+			}
+		}
+		return true;
+	}
+
+	public boolean startOutgoingCall() {
+		int position = historyList.getSelectedItemPosition();
+		if (isEditMode || position < 0 || position > mLogs.size() - 1) {
+			return false;
+		} else {
+			final LinphoneCallLog log = mLogs.get(position);
+			final LinphoneAddress address;
+			if (log.getDirection() == CallDirection.Incoming) {
+				address = log.getFrom();
+			} else {
+				address = log.getTo();
+			}
+			if (LinphoneActivity.isInstanciated()) {
+				LinphoneActivity.instance().setAddresGoToDialerAndCall(address.asStringUriOnly(), address.getDisplayName(), null);
+			}
+		}
+		return true;
+	}
 }

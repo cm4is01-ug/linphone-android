@@ -8,7 +8,8 @@
 			android:hint="sip:user@host:port" android:layout_width="fill_parent"
 			android:layout_weight="1" android:text="sip:[user@]host[:port]"></EditText>
 		<Button android:layout_height="wrap_content" android:id="@+id/CallButton"
-			android:text="Call" android:layout_width="wrap_content"></Button>
+			android:text="Call" android:layout_width="wrap_content"
+			android:focusable="true"></Button>
 
 	</LinearLayout>
 	<EditText android:layout_height="wrap_content" android:id="@+id/MyAddressId"
@@ -26,6 +27,7 @@
 		android:text="Debug"></TextView>
 
 	<Button android:text="STOP" android:id="@+id/ButtonStop"
-		android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:focusable="true"></Button>
 
 </LinearLayout>

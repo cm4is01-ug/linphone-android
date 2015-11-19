@@ -123,7 +123,7 @@ public class ContactFragment extends Fragment implements OnClickListener {
 		TextView contactName = (TextView) view.findViewById(R.id.contactName);
 		contactName.setText(contact.getName());
 
-		
+		boolean first = true;
 		TableLayout controls = (TableLayout) view.findViewById(R.id.controls);
 		controls.removeAllViews();
 		for (String numberOrAddress : contact.getNumbersOrAddresses()) {
@@ -141,6 +141,10 @@ public class ContactFragment extends Fragment implements OnClickListener {
 			if (!displayChatAddressOnly) {
 				v.findViewById(R.id.dial).setOnClickListener(dialListener);
 				v.findViewById(R.id.dial).setTag(displayednumberOrAddress);
+				if (first) {
+					first = false;
+					v.findViewById(R.id.dial).requestFocusFromTouch();
+				}
 			} else {
 				v.findViewById(R.id.dial).setVisibility(View.GONE);
 			}

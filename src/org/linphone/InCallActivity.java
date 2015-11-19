@@ -33,6 +33,7 @@ import org.linphone.mediastream.Log;
 import org.linphone.mediastream.Version;
 import org.linphone.mediastream.video.capture.hwconf.AndroidCameraConfiguration;
 import org.linphone.ui.AvatarWithShadow;
+import org.linphone.ui.Digit;
 import org.linphone.ui.Numpad;
 
 import android.app.Activity;
@@ -794,7 +795,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 			mControlsHandler.postDelayed(mControls = new Runnable() {
 				public void run() {
 					hideNumpad();
-					
+
 					if (isAnimationDisabled) {
 						transfer.setVisibility(View.INVISIBLE);
 						addCall.setVisibility(View.INVISIBLE);
@@ -803,18 +804,18 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 						switchCamera.setVisibility(View.INVISIBLE);
 						numpad.setVisibility(View.GONE);
 						options.setBackgroundResource(R.drawable.options);
-					} else {					
+					} else {
 						Animation animation = slideOutTopToBottom;
 						animation.setAnimationListener(new AnimationListener() {
 							@Override
 							public void onAnimationStart(Animation animation) {
 								video.setEnabled(false); // HACK: Used to avoid controls from being hided if video is switched while controls are hiding
 							}
-							
+
 							@Override
 							public void onAnimationRepeat(Animation animation) {
 							}
-							
+
 							@Override
 							public void onAnimationEnd(Animation animation) {
 								video.setEnabled(true); // HACK: Used to avoid controls from being hided if video is switched while controls are hiding
@@ -825,7 +826,7 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
 								switchCamera.setVisibility(View.INVISIBLE);
 								numpad.setVisibility(View.GONE);
 								options.setBackgroundResource(R.drawable.options);
-								
+
 								animation.setAnimationListener(null);
 							}
 						});
@@ -1448,5 +1449,21 @@ public class InCallActivity extends FragmentActivity implements OnClickListener 
         } 
         
         callsList.invalidate();
+	}
+
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent e) {
+		if (numpad != null) {
+			Digit v = numpad.hardkey(e);
+			if (v != null) {
+				if (e.getAction() == KeyEvent.ACTION_DOWN) {
+					v.performClick();
+				}
+				else if (e.getAction() == KeyEvent.ACTION_UP) {
+				}
+				return true;
+			}
+		}
+		return super.dispatchKeyEvent(e);
 	}
 }

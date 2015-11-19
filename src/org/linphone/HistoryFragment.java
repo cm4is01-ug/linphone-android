@@ -89,7 +89,8 @@ public class HistoryFragment extends Fragment implements OnClickListener, OnChil
         
         ok = (TextView) view.findViewById(R.id.ok);
         ok.setOnClickListener(this);
-        
+
+		historyList.requestFocusFromTouch();
 		return view;
     }
 	
@@ -127,6 +128,8 @@ public class HistoryFragment extends Fragment implements OnClickListener, OnChil
 			historyList.setAdapter(new CallHistoryAdapter(getActivity().getApplicationContext()));
 		}
         expandAllGroups();
+
+		historyList.requestFocusFromTouch();
 	}
 	
 	private void initLogsLists(List<LinphoneCallLog> logs) {

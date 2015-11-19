@@ -48,6 +48,10 @@ import org.linphone.mediastream.Log;
 import org.linphone.setup.RemoteProvisioningLoginActivity;
 import org.linphone.setup.SetupActivity;
 import org.linphone.ui.AddressText;
+import org.linphone.ui.CallButton;
+import org.linphone.ui.Digit;
+import org.linphone.ui.EraseButton;
+import org.linphone.ui.Numpad;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -109,6 +113,8 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 	private boolean isAnimationDisabled = false, preferLinphoneContacts = false;
 	private OrientationEventListener mOrientationHelper;
 	private LinphoneCoreListenerBase mListener;
+
+	private Fragment historyFragment;
 
 	static final boolean isInstanciated() {
 		return instance != null;
@@ -366,6 +372,7 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 			} else {
 				newFragment = new HistoryFragment();
 			}
+			historyFragment = newFragment;
 			break;
 		case HISTORY_DETAIL:
 			newFragment = new HistoryDetailFragment();
@@ -470,6 +477,9 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 		getSupportFragmentManager().executePendingTransactions();
 
 		currentFragment = newFragmentType;
+		if (newFragmentType == FragmentsAvailable.DIALER) {
+			((Numpad)findViewById(R.id.Dialer)).requestFocusFromTouch();
+		}
 	}
 
 	private void changeFragmentForTablets(Fragment newFragment, FragmentsAvailable newFragmentType, boolean withoutAnimation) {
@@ -1245,6 +1255,59 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode ) {
+			case KeyEvent.KEYCODE_F3:
+				if (currentFragment ==  FragmentsAvailable.DIALER) {
+					((View)findViewById(R.id.contacts)).performClick();
+					return true;
+				}
+				else if (currentFragment == FragmentsAvailable.CONTACTS
+						|| currentFragment == FragmentsAvailable.CONTACT) {
+					((View)findViewById(R.id.history)).performClick();
+					return true;
+				}
+				else if (currentFragment == FragmentsAvailable.HISTORY
+						|| currentFragment == FragmentsAvailable.HISTORY_DETAIL) {
+					((View)findViewById(R.id.settings)).performClick();
+					return true;
+				}
+				else if (currentFragment == FragmentsAvailable.CHATLIST) {
+					((View)findViewById(R.id.dialer)).performClick();
+					return true;
+				}
+				else if (currentFragment == FragmentsAvailable.SETTINGS
+						|| currentFragment == FragmentsAvailable.ACCOUNT_SETTINGS
+						|| currentFragment == FragmentsAvailable.ABOUT) {
+					((View)findViewById(R.id.chat)).performClick();
+					return true;
+				}
+				break;
+			case KeyEvent.KEYCODE_F4:
+				if (currentFragment ==  FragmentsAvailable.DIALER) {
+					((View)findViewById(R.id.chat)).performClick();
+					return true;
+				}
+				else if (currentFragment == FragmentsAvailable.CONTACTS
+						|| currentFragment == FragmentsAvailable.CONTACT) {
+					((View)findViewById(R.id.dialer)).performClick();
+					return true;
+				}
+				else if (currentFragment == FragmentsAvailable.HISTORY
+						|| currentFragment == FragmentsAvailable.HISTORY_DETAIL) {
+					((View)findViewById(R.id.contacts)).performClick();
+					return true;
+				}
+				else if (currentFragment == FragmentsAvailable.CHATLIST) {
+					((View)findViewById(R.id.settings)).performClick();
+					return true;
+				}
+				else if (currentFragment == FragmentsAvailable.SETTINGS
+						|| currentFragment == FragmentsAvailable.ACCOUNT_SETTINGS
+						|| currentFragment == FragmentsAvailable.ABOUT) {
+					((View)findViewById(R.id.history)).performClick();
+					return true;
+				}
+		}
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (currentFragment == FragmentsAvailable.DIALER
 					|| currentFragment == FragmentsAvailable.CONTACTS
@@ -1272,6 +1335,50 @@ public class LinphoneActivity extends FragmentActivity implements OnClickListene
 			}
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent e) {
+		if (e.getAction() == KeyEvent.ACTION_DOWN) {
+			if (currentFragment == FragmentsAvailable.DIALER) {
+				Digit v = ((Numpad) findViewById(R.id.Dialer)).hardkey(e);
+				if (v != null) {
+					v.performClick();
+					return true;
+				} else if (e.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+					if (((AddressText) findViewById(R.id.Adress)).getText().length() > 0) {
+						((EraseButton) findViewById(R.id.Erase)).performClick();
+						return true;
+					}
+				} else if (e.getKeyCode() == KeyEvent.KEYCODE_CALL) {
+					((CallButton) findViewById(R.id.Call)).performClick();
+					return true;
+				}
+			} else if (currentFragment == FragmentsAvailable.HISTORY) {
+				if (historyFragment != null) {
+					if (e.getKeyCode() == KeyEvent.KEYCODE_DPAD_CENTER) {
+						if (getResources().getBoolean(R.bool.use_simple_history)) {
+							if (((HistorySimpleFragment)historyFragment).startHistoryDetail()) {
+								return true;
+							}
+						}
+					}
+					if (e.getKeyCode() == KeyEvent.KEYCODE_CALL) {
+						if (getResources().getBoolean(R.bool.use_simple_history)) {
+							if (((HistorySimpleFragment)historyFragment).startOutgoingCall()) {
+								return true;
+							}
+						}
+					}
+				}
+			} else if (currentFragment == FragmentsAvailable.HISTORY_DETAIL) {
+				if (e.getKeyCode() == KeyEvent.KEYCODE_CALL) {
+					findViewById(R.id.dialBack).performClick();
+					return true;
+				}
+			}
+		}
+		return super.dispatchKeyEvent(e);
 	}
 }
 

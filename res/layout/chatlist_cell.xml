@@ -17,7 +17,8 @@
 	    android:layout_alignParentRight="true"
 	    android:layout_centerVertical="true"
 	    android:visibility="invisible"
-	    android:src="@drawable/list_delete" />
+	    android:src="@drawable/list_delete"
+		android:focusable="true" />
 	
 	<TextView
         android:id="@+id/unreadMessages"
