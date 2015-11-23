@@ -409,12 +409,16 @@ public class ContactsListFragment extends Fragment implements OnClickListener, O
 			allContactsSelected.setVisibility(View.INVISIBLE);
 			linphoneContactsSelected.setVisibility(View.VISIBLE);
 			allContacts.setEnabled(true);
+			allContactsSelected.setVisibility(View.INVISIBLE);
 			linphoneContacts.setEnabled(false);
+			linphoneContactsSelected.setVisibility(View.VISIBLE);
 		} else {
 			allContactsSelected.setVisibility(View.VISIBLE);
 			linphoneContactsSelected.setVisibility(View.INVISIBLE);
 			allContacts.setEnabled(false);
+			allContactsSelected.setVisibility(View.VISIBLE);
 			linphoneContacts.setEnabled(true);
+			linphoneContactsSelected.setVisibility(View.INVISIBLE);
 		}
 	}
 
@@ -434,18 +438,19 @@ public class ContactsListFragment extends Fragment implements OnClickListener, O
 	public void onResume() {
 		instance = this;
 		super.onResume();
-		
+
 		if (editConsumed) {
 			editOnClick = false;
 			sipAddressToAdd = null;
 		}
-		
+
 		if (LinphoneActivity.isInstanciated()) {
 			LinphoneActivity.instance().selectMenu(FragmentsAvailable.CONTACTS_LIST);
 			LinphoneActivity.instance().hideTabBar(false);
 			onlyDisplayLinphoneContacts = ContactsManager.getInstance().isLinphoneContactsPrefered();
 		}
-		
+		changeContactsToggle();
+
 		invalidate();
 		allContacts.requestFocusFromTouch();
 	}
