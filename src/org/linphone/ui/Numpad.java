@@ -26,7 +26,6 @@ import org.linphone.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,53 +89,4 @@ public class Numpad extends LinearLayout implements AddressAware {
 		return views;
 	}
 
-	public Digit hardkey(KeyEvent e) {
-		Digit v = null;
-		int id = -1;
-
-		switch (e.getKeyCode()) {
-			case KeyEvent.KEYCODE_1:
-				id = R.id.Digit1;
-				break;
-			case KeyEvent.KEYCODE_2:
-				id = R.id.Digit2;
-				break;
-			case KeyEvent.KEYCODE_3:
-				id = R.id.Digit3;
-				break;
-			case KeyEvent.KEYCODE_4:
-				id = R.id.Digit4;
-				break;
-			case KeyEvent.KEYCODE_5:
-				id = R.id.Digit5;
-				break;
-			case KeyEvent.KEYCODE_6:
-				id = R.id.Digit6;
-				break;
-			case KeyEvent.KEYCODE_7:
-				id = R.id.Digit7;
-				break;
-			case KeyEvent.KEYCODE_8:
-				id = R.id.Digit8;
-				break;
-			case KeyEvent.KEYCODE_9:
-				id = R.id.Digit9;
-				break;
-			case KeyEvent.KEYCODE_0:
-				id = R.id.Digit00;
-				break;
-			case KeyEvent.KEYCODE_STAR:
-				id = R.id.DigitStar;
-				break;
-			case KeyEvent.KEYCODE_POUND:
-				id = R.id.DigitHash;
-				break;
-		}
-
-		if (id > 0) {
-			v = (Digit)findViewById(id);
-			v.requestFocusFromTouch();
-		}
-		return v;
-	}
 }

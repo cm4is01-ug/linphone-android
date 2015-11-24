@@ -23,7 +23,6 @@ import org.linphone.ui.AddressAware;
 import org.linphone.ui.AddressText;
 import org.linphone.ui.CallButton;
 import org.linphone.ui.EraseButton;
-import org.linphone.ui.Numpad;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -121,8 +120,7 @@ public class DialerFragment extends Fragment {
 				mAddress.setPictureUri(Uri.parse(photo));
 			}
 		}
-
-		((Numpad)view.findViewById(R.id.Dialer)).requestFocusFromTouch();
+		
 		return view;
     }
 

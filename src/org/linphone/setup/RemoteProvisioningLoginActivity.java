@@ -61,7 +61,6 @@ public class RemoteProvisioningLoginActivity extends Activity implements OnClick
 			domain.setText(defaultDomain);
 			domain.setEnabled(false);
 		}
-		login.requestFocusFromTouch();
 	}
 	
 	private void cancelWizard(boolean bypassCheck) {

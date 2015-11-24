@@ -45,8 +45,7 @@ public class GenericLoginFragment extends Fragment implements OnClickListener {
 		domain = (EditText) view.findViewById(R.id.setup_domain);
 		apply = (ImageView) view.findViewById(R.id.setup_apply);
 		apply.setOnClickListener(this);
-
-		login.requestFocusFromTouch();
+		
 		return view;
 	}
 

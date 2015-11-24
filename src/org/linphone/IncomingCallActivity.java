@@ -21,15 +21,11 @@ package org.linphone;
 import java.util.List;
 
 import org.linphone.core.LinphoneAddress;
-import org.linphone.core.LinphoneAuthInfo;
 import org.linphone.core.LinphoneCall;
 import org.linphone.core.LinphoneCall.State;
 import org.linphone.core.LinphoneCallParams;
 import org.linphone.core.LinphoneCore;
-import org.linphone.core.LinphoneCoreException;
-import org.linphone.core.LinphoneCoreFactory;
 import org.linphone.core.LinphoneCoreListenerBase;
-import org.linphone.core.LinphoneProxyConfig;
 import org.linphone.mediastream.Log;
 import org.linphone.ui.AvatarWithShadow;
 import org.linphone.ui.LinphoneSliders;
@@ -127,13 +123,6 @@ public class IncomingCallActivity extends Activity implements LinphoneSliderTrig
 			return;
 		}
 		LinphoneAddress address = mCall.getRemoteAddress();
-
-		if (!isValidDomain()) {
-			Log.e("Decline incoming call from Invalid domain: " + address.getDomain());
-			decline();
-			// finish();
-		}
-
 		// May be greatly sped up using a drawable cache
 		Contact contact = ContactsManager.getInstance().findContactWithAddress(getContentResolver(), address);
 		LinphoneUtils.setImagePictureFromUri(this, mPictureView.getView(), contact != null ? contact.getPhotoUri() : null,
@@ -165,16 +154,9 @@ public class IncomingCallActivity extends Activity implements LinphoneSliderTrig
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (LinphoneManager.isInstanciated()) {
-			if (//(keyCode == KeyEvent.KEYCODE_BACK) ||
-				(keyCode == KeyEvent.KEYCODE_HOME)) {
-				LinphoneManager.getLc().terminateCall(mCall);
-				// finish();
-			}
-			else if (keyCode == KeyEvent.KEYCODE_CALL) {
-				answer();
-				finish();
-			}
+		if (LinphoneManager.isInstanciated() && (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME)) {
+			LinphoneManager.getLc().terminateCall(mCall);
+			finish();
 		}
 		return super.onKeyDown(keyCode, event);
 	}
@@ -219,31 +201,6 @@ public class IncomingCallActivity extends Activity implements LinphoneSliderTrig
 	@Override
 	public void onRightHandleTriggered() {
 		decline();
-		// finish();
-	}
-
-	public boolean isValidDomain() {
-		try {
-			if (getLc() != null) {
-				LinphoneProxyConfig[] prxCfgs = getLc().getProxyConfigList();
-				for (int n = 0; n < prxCfgs.length; n++) {
-					LinphoneAddress addr = LinphoneCoreFactory.instance().createLinphoneAddress(prxCfgs[n].getIdentity());
-					LinphoneAuthInfo authInfo = getLc().findAuthInfo(addr.getUserName(), null, addr.getDomain());
-					if (authInfo.getDomain().equals(mCall.getRemoteAddress().getDomain())) {
-						return true;
-					}
-				}
-			}
-		} catch (LinphoneCoreException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	private LinphoneCore getLc() {
-		if (!LinphoneManager.isInstanciated())
-			return null;
-
-		return LinphoneManager.getLcIfManagerNotDestroyedOrNull();
+		finish();
 	}
 }

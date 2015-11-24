@@ -48,8 +48,7 @@ public class LinphoneLoginFragment extends Fragment implements OnClickListener {
 		if (getResources().getBoolean(R.bool.setup_use_linphone_as_first_fragment)) {
 			view.findViewById(R.id.setup_apply_button).setVisibility(View.GONE);
 		}
-
-		login.requestFocusFromTouch();
+		
 		return view;
 	}
 	

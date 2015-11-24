@@ -149,7 +149,7 @@
   <string name="menu_send_log">ログを送信する</string>
   <string name="menu_reset_log">ログをリセットする</string>
   <string name="pref_audio">オーディオ</string>
-  <string name="menu_exit">アプリを終了</string>
+  <string name="menu_exit">退出</string>
   <string name="pref_prefix">プレフィックス</string>
   <string name="pref_advanced">拡張</string>
   <string name="menu_settings">設定</string>
@@ -226,7 +226,7 @@
   <string name="conference">会議</string>
   <string name="incoming">着信</string>
   <string name="draft">計画</string>
-  <string name="new_fast_chat">チャット相手のSIPアドレスを入力してください</string>
+  <string name="new_fast_chat">...とチャットするSIPアドレスを入力してください</string>
   <string name="no_call_history">呼び出し履歴がありません</string>
   <string name="no_missed_call_history">呼び出しミス履歴がありません</string>
   <string name="no_contact">電話帳に連絡先がありません</string>
@@ -308,7 +308,7 @@
   <string name="button_new_chat">新しい会話</string>
   <string name="button_edit">編集</string>
   <string name="button_cancel">キャンセル</string>
-  <string name="button_ok">Okay</string>
+  <string name="button_ok">はい</string>
   <string name="button_back">戻る</string>
   <string name="button_all_contacts">すべて</string>
   <string name="button_add_contact">新しい連絡先</string>

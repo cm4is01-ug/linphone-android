@@ -558,8 +558,6 @@ public final class LinphoneService extends Service {
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@Override
 	public void onTaskRemoved(Intent rootIntent) {
-		LinphoneManager.getLc().terminateAllCalls();
-
 		if (getResources().getBoolean(R.bool.kill_service_with_task_manager)) {
 			Log.d("Task removed, stop service");
 			LinphoneManager.getLc().setNetworkReachable(false);

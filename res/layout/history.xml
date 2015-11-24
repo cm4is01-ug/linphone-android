@@ -23,8 +23,7 @@
 			android:layout_height="match_parent"
 			android:scaleType="centerCrop"
 			android:adjustViewBounds="true"
-			android:layout_weight="1"
-			android:focusable="true" />
+			android:layout_weight="1"/>
 
 		<TextView
 			android:contentDescription="@string/content_description_all_calls"
@@ -38,8 +37,7 @@
 			android:layout_height="match_parent"
 			android:scaleType="centerCrop"
 			android:adjustViewBounds="true"
-			android:layout_weight="1"
-			android:focusable="true" />
+			android:layout_weight="1"/>
 
 		<TextView
 			android:contentDescription="@string/content_description_missed_calls"
@@ -53,8 +51,7 @@
 			android:layout_height="match_parent"
 			android:scaleType="centerCrop"
 			android:adjustViewBounds="true"
-			android:layout_weight="1"
-			android:focusable="true" />
+			android:layout_weight="1"/>
 
 		<TextView
 			android:contentDescription="@string/content_description_edit"
@@ -68,8 +65,7 @@
 			android:layout_height="match_parent"
 			android:scaleType="centerCrop"
 			android:adjustViewBounds="true"
-			android:layout_weight="1"
-			android:focusable="true" />
+			android:layout_weight="1"/>
 
 		<TextView
 			android:contentDescription="@string/content_description_validate"
@@ -84,8 +80,7 @@
 			android:layout_height="match_parent"
 			android:scaleType="centerCrop"
 			android:adjustViewBounds="true"
-			android:layout_weight="1"
-			android:focusable="true" />
+			android:layout_weight="1"/>
 
 	</LinearLayout>
 
@@ -95,10 +90,7 @@
 		android:layout_height="match_parent"
 		android:divider="@android:color/darker_gray"
 		android:cacheColorHint="@color/transparent"
-		android:dividerHeight="1dp"
-		android:focusable="true"
-		android:focusableInTouchMode="true"
-		android:listSelector="@drawable/list_selector" />
+		android:dividerHeight="1dp" />
 
 	<TextView
 		android:id="@+id/noCallHistory"
@@ -108,13 +100,7 @@
 		android:gravity="center"
 		android:text="@string/no_call_history"
 		android:textColor="@drawable/text_color"
-		android:textAppearance="@android:style/TextAppearance.Large"
-		android:clickable="false"
-		android:focusable="false"
-		android:focusableInTouchMode="false"
-		android:linksClickable="false"
-		android:longClickable="false"
-		android:textIsSelectable="false" />
+		android:textAppearance="@android:style/TextAppearance.Large"/>
 
 	<TextView
 		android:id="@+id/noMissedCallHistory"
@@ -124,12 +110,6 @@
 		android:gravity="center"
 		android:text="@string/no_missed_call_history"
 		android:textColor="@drawable/text_color"
-		android:textAppearance="@android:style/TextAppearance.Large"
-		android:textIsSelectable="false"
-		android:longClickable="false"
-		android:linksClickable="false"
-		android:focusableInTouchMode="false"
-		android:focusable="false"
-		android:clickable="false" />
+		android:textAppearance="@android:style/TextAppearance.Large"/>
 
 </LinearLayout>

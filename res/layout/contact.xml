@@ -23,8 +23,7 @@
 			android:layout_height="match_parent"
 			android:scaleType="centerCrop"
 			android:adjustViewBounds="true"
-			android:layout_weight="1"
-			android:focusable="true" />
+			android:layout_weight="1"/>
         
         <TextView 
             android:contentDescription="@string/content_description_edit"
@@ -38,8 +37,7 @@
 		    android:layout_height="match_parent"
 			android:layout_weight="1"
 		    android:scaleType="centerCrop"
-		    android:adjustViewBounds="true"
-			android:focusable="true" />
+		    android:adjustViewBounds="true"/>
         
     </LinearLayout>
     

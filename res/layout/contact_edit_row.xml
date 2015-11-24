@@ -13,8 +13,7 @@
  		android:layout_height="wrap_content"
  		android:src="@drawable/list_delete"
         android:paddingRight="5dp"
-        android:gravity="left"
-		android:focusable="true" />
+        android:gravity="left" />
    	
    	<EditText
         android:textCursorDrawable="@null"
@@ -23,7 +22,6 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:background="@drawable/chat_fast_address_background"
-        android:inputType="textEmailAddress"
-		android:focusable="true" />
+        android:inputType="textEmailAddress"/>
   
   </TableRow>

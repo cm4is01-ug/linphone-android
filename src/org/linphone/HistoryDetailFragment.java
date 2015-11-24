@@ -85,8 +85,7 @@ public class HistoryDetailFragment extends Fragment implements OnClickListener {
 		date = (TextView) view.findViewById(R.id.date);
 		
 		displayHistory(status, callTime, callDate);
-
-		dialBack.requestFocusFromTouch();
+		
 		return view;
 	}
 	
@@ -149,7 +148,6 @@ public class HistoryDetailFragment extends Fragment implements OnClickListener {
 				LinphoneActivity.instance().hideStatusBar();
 			}
 		}
-		dialBack.requestFocusFromTouch();
 	}
 
 	@Override

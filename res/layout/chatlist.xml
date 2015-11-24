@@ -22,8 +22,7 @@
 		    android:layout_height="match_parent"
 		    android:scaleType="centerCrop"
 		    android:adjustViewBounds="true"
-		    android:layout_weight="1"
-            android:focusable="true" />
+		    android:layout_weight="1"/>
         
         <TextView 
             android:contentDescription="@string/content_description_edit"
@@ -36,8 +35,7 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:adjustViewBounds="true"
-		    android:layout_weight="1"
-            android:focusable="true" />
+		    android:layout_weight="1"/>
         
         <TextView 
             android:contentDescription="@string/content_description_validate"
@@ -51,8 +49,7 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:adjustViewBounds="true"
-		    android:layout_weight="1"
-            android:focusable="true" />
+		    android:layout_weight="1"/>
         
     </LinearLayout>
     
@@ -70,8 +67,7 @@
 	        android:layout_centerVertical="true"
 	        android:layout_alignParentRight="true"
 	        android:paddingLeft="5dp"
-	        android:paddingRight="5dp"
-            android:focusable="true" />
+	        android:paddingRight="5dp"/>
         
 	    <EditText
             android:textCursorDrawable="@null"

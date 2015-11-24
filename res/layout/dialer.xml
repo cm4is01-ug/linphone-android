@@ -16,8 +16,7 @@
         android:paddingRight="20dp"
        	android:layout_gravity="center" 
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:focusableInTouchMode="false" />
+        android:layout_centerHorizontal="true"/>
     
     <LinearLayout
         android:id="@+id/controls"

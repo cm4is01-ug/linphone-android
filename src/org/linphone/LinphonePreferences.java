@@ -1057,12 +1057,7 @@ public class LinphonePreferences {
 	}
 
 	public String getRemoteProvisioningUrl() {
-		try {
-			return getLc().getProvisioningUri();
-		}
-		catch(NullPointerException e) {
-		}
-		return "x";
+		return getLc().getProvisioningUri();
 	}
 
 	public void setDefaultDisplayName(String displayName) {

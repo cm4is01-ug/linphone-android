@@ -129,7 +129,6 @@ public class ContactsFragment extends Fragment implements OnClickListener, OnIte
 			}
 		});
 
-		contactsList.requestFocusFromTouch();
 		return view;
     }
 
@@ -264,7 +263,6 @@ public class ContactsFragment extends Fragment implements OnClickListener, OnIte
 		}
 		
 		invalidate();
-		contactsList.requestFocusFromTouch();
 	}
 	
 	@Override

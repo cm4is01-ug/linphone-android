@@ -1,28 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_window_focused="false">
-        <shape android:shape="rectangle">
-            <solid android:color="@android:color/white" />
-        </shape>
-    </item>
-    <item android:state_pressed="true">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/text_selected" />
-        </shape>
-    </item>
-    <item android:state_selected="true">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/text_over" />
-        </shape>
-    </item>
-    <item android:state_focused="true">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/text_selected"/>
-        </shape>
-    </item>
-    <item>
-        <shape android:shape="rectangle">
-            <solid android:color="@android:color/white" />
-        </shape>
-    </item>
+    <item 
+    	android:state_pressed="true" 
+        android:drawable="@color/main_app_color" />
+    <item
+         android:drawable="@android:color/white" />
 </selector>

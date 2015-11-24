@@ -60,8 +60,7 @@ public class MenuFragment extends Fragment implements OnClickListener {
 		} else {
 			remoteProvisioning.setOnClickListener(this);
 		}
-
-		logGenericAccount.requestFocusFromTouch();
+		
 		return view;
 	}
 

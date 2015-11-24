@@ -26,8 +26,7 @@
         android:layout_height="30dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:src="@drawable/pause"
-        android:focusable="true" />
+        android:src="@drawable/pause" />
     
     <Chronometer
         android:visibility="invisible"
