@@ -21,7 +21,7 @@ package org.linphone;
 import static android.content.Intent.ACTION_MAIN;
 
 import org.linphone.mediastream.Log;
-import org.linphone.setup.RemoteProvisioningActivity;
+import org.linphone.assistant.RemoteProvisioningActivity;
 import org.linphone.tutorials.TutorialLauncherActivity;
 
 import android.app.Activity;
@@ -52,10 +52,10 @@ public class LinphoneLauncherActivity extends Activity {
 		// Hack to avoid to draw twice LinphoneActivity on tablets
         if (getResources().getBoolean(R.bool.isTablet)) {
         	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else {
-        	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        }
-		setContentView(R.layout.launcher);
+        } else  if (getResources().getBoolean(R.bool.orientation_portrait_only)) {
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		}
+		setContentView(R.layout.launch_screen);
         
 		mHandler = new Handler();
 		
@@ -99,7 +99,6 @@ public class LinphoneLauncherActivity extends Activity {
 					throw new RuntimeException("waiting thread sleep() has been interrupted");
 				}
 			}
-
 			mHandler.post(new Runnable() {
 				@Override
 				public void run() {
