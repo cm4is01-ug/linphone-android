@@ -146,7 +146,6 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 
 		if(getArguments() == null || getArguments().getString("SipUri") == null) {
 			newChatConversation = true;
-			Log.w("lala");
 		} else {
 			//Retrieve parameter from intent
 			sipUri = getArguments().getString("SipUri");
@@ -469,7 +468,10 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 			chatRoom = lc.getChatRoom(lAddress);
 			chatRoom.markAsRead();
 			contact = ContactsManager.getInstance().findContactWithAddress(getActivity().getContentResolver(), lAddress);
-			displayChatHeader(lAddress);
+			if(chatRoom != null) {
+				displayChatHeader(lAddress);
+				dispayMessageList();
+			}
 		}
 
 	}
@@ -494,12 +496,6 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 		this.pictureUri = pictureUri;
 
 		initChatRoom(sipUri);
-
-		if(chatRoom != null) {
-			LinphoneAddress lAddress = chatRoom.getPeerAddress();
-			displayChatHeader(lAddress);
-			dispayMessageList();
-		}
 	}
 
 	@Override
@@ -609,12 +605,7 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 		LinphoneManager.addListener(this);
 
 		// Force hide keyboard
-		boolean isOrientationLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-		if(isOrientationLandscape) {
-			getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-		} else {
-			getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-		}
+		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
 		String draft = getArguments().getString("messageDraft");
 		message.setText(draft);
@@ -622,7 +613,6 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 		if(!newChatConversation) {
 			initChatRoom(sipUri);
 			remoteComposing.setVisibility(chatRoom.isRemoteComposing() ? View.VISIBLE : View.GONE);
-			dispayMessageList();
 		}
 		back.requestFocusFromTouch();
 		super.onResume();
@@ -711,6 +701,7 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 			editList.setVisibility(View.VISIBLE);
 			isEditMode = true;
 			dispayMessageList();
+			//TODO refaire la liste
 		}
 		if(id == R.id.start_call){
 			LinphoneActivity.instance().setAddresGoToDialerAndCall(sipUri, LinphoneUtils.getUsernameFromAddress(sipUri), null);
@@ -742,6 +733,7 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 		if (chatRoom != null && messageToSend != null && messageToSend.length() > 0 && isNetworkReachable) {
 			LinphoneChatMessage message = chatRoom.createLinphoneChatMessage(messageToSend);
 			chatRoom.sendChatMessage(message);
+			lAddress = chatRoom.getPeerAddress();
 
 			if (LinphoneActivity.isInstanciated()) {
 				LinphoneActivity.instance().onMessageSent(sipUri, messageToSend);
@@ -763,6 +755,13 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 	private void sendImageMessage(String path, int imageSize) {
 		LinphoneCore lc = LinphoneManager.getLcIfManagerNotDestroyedOrNull();
 		boolean isNetworkReachable = lc == null ? false : lc.isNetworkReachable();
+
+		if(newChatConversation && chatRoom == null) {
+			String address = searchContactField.getText().toString();
+			if (address != null && !address.equals("")) {
+				initChatRoom(address);
+			}
+		}
 		invalidate();
 
 		if (chatRoom != null && path != null && path.length() > 0 && isNetworkReachable) {
