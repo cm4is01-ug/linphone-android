@@ -209,38 +209,41 @@
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			android:background="@color/colorH">
 
 			<include layout="@layout/side_menu_main_account"/>
 
 			<ListView
 				android:id="@+id/accounts_list"
-				android:background="@color/colorB"
+				android:background="@drawable/list_background"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:choiceMode="singleChoice"
 				android:cacheColorHint="@color/transparent"
 				android:divider="@android:color/transparent"
+				android:listSelector="@color/transparent"
 				android:dividerHeight="0dp"/>
 
 			<ListView
 				android:id="@+id/item_list"
-				android:background="@color/colorH"
+				android:background="@drawable/list_background"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:choiceMode="singleChoice"
 				android:divider="@color/colorE"
-				android:listSelector="@color/colorH"
+				android:listSelector="@color/transparent"
 				android:dividerHeight="1dp"/>
 		</LinearLayout>
 
 		<RelativeLayout
 			android:id="@+id/side_menu_quit"
-			android:background="@color/colorA"
+			android:background="@drawable/side_menu_quit"
 			android:gravity="bottom"
 			android:layout_alignParentBottom="true"
 			android:layout_width="match_parent"
-			android:layout_height="50dp">
+			android:layout_height="50dp"
+			android:focusable="true">
 
 			<ImageView
 				android:id="@+id/quit_button"

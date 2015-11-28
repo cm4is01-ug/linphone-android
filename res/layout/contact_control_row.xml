@@ -47,23 +47,25 @@
 
 			<ImageView
 				android:id="@+id/contact_call"
-				android:src="@drawable/call_start_body_default"
+				android:src="@drawable/call_start_body"
 				android:contentDescription="@string/content_description_dial_back"
 				android:layout_width="60dp"
 				android:layout_height="60dp"
 				android:layout_margin="10dp"
 				android:adjustViewBounds="true"
-				android:layout_centerInParent="true"/>
+				android:layout_centerInParent="true"
+				android:focusable="true" />
 
 			<ImageView
 				android:id="@+id/contact_chat"
-				android:src="@drawable/chat_start_body_default"
+				android:src="@drawable/chat_start_body"
 				android:contentDescription="@string/content_description_chat"
 				android:layout_width="60dp"
 				android:layout_height="60dp"
 				android:layout_margin="10dp"
 				android:adjustViewBounds="true"
-				android:layout_centerInParent="true" />
+				android:layout_centerInParent="true"
+				android:focusable="true" />
 
 		</LinearLayout>
 	</LinearLayout>

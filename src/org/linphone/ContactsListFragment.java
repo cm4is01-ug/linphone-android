@@ -163,6 +163,8 @@ public class ContactsListFragment extends Fragment implements OnClickListener, O
 			}
 		});
 
+		changeContactsToggle();
+		allContacts.requestFocusFromTouch();
 		return view;
     }
 
@@ -357,6 +359,7 @@ public class ContactsListFragment extends Fragment implements OnClickListener, O
 				contactsList.setAdapter(new ContactsListAdapter(null, searchCursor));
 			}
 		}
+		ContactsManager.getInstance().setLinphoneContactsPrefered(onlyDisplayLinphoneContacts);
 	}
 	
 	private void changeContactsAdapter() {
@@ -403,9 +406,13 @@ public class ContactsListFragment extends Fragment implements OnClickListener, O
 	
 	private void changeContactsToggle() {
 		if (onlyDisplayLinphoneContacts) {
+			allContactsSelected.setVisibility(View.INVISIBLE);
+			linphoneContactsSelected.setVisibility(View.VISIBLE);
 			allContacts.setEnabled(true);
 			linphoneContacts.setEnabled(false);
 		} else {
+			allContactsSelected.setVisibility(View.VISIBLE);
+			linphoneContactsSelected.setVisibility(View.INVISIBLE);
 			allContacts.setEnabled(false);
 			linphoneContacts.setEnabled(true);
 		}
@@ -440,6 +447,7 @@ public class ContactsListFragment extends Fragment implements OnClickListener, O
 		}
 		
 		invalidate();
+		allContacts.requestFocusFromTouch();
 	}
 	
 	@Override
@@ -452,6 +460,7 @@ public class ContactsListFragment extends Fragment implements OnClickListener, O
 	}
 	
 	public void invalidate() {
+		changeContactsToggle();
 		if (searchField != null && searchField.getText().toString().length() > 0) {
 			searchContacts(searchField.getText().toString());
 		} else {

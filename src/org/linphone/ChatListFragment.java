@@ -108,6 +108,8 @@ public class ChatListFragment extends Fragment implements OnClickListener, OnIte
 
 		delete = (ImageView) view.findViewById(R.id.delete);
 		delete.setOnClickListener(this);
+
+		newDiscussion.requestFocusFromTouch();
 		return view;
 	}
 
@@ -246,6 +248,7 @@ public class ChatListFragment extends Fragment implements OnClickListener, OnIte
 		}
 		
 		refresh();
+		newDiscussion.requestFocusFromTouch();
 	}
 
 	@Override

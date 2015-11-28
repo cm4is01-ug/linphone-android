@@ -25,7 +25,8 @@
 				android:gravity="center"
 				android:padding="15dp"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"/>
+				android:layout_height="match_parent"
+				android:focusable="true" />
 
 			<RelativeLayout
 				android:id="@+id/all_calls_select"
@@ -52,7 +53,8 @@
 				android:gravity="center"
 				android:padding="15dp"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"/>
+				android:layout_height="match_parent"
+				android:focusable="true" />
 
 			<RelativeLayout
 				android:id="@+id/missed_calls_select"
@@ -74,7 +76,8 @@
 			android:layout_width="70dp"
 			android:layout_height="match_parent"
 			android:layout_alignParentRight="true"
-			android:padding="15dp"/>
+			android:padding="15dp"
+			android:focusable="true" />
 	</RelativeLayout>
 
 	<include layout="@layout/edit_list"/>
@@ -82,10 +85,12 @@
 	<ListView
 		android:id="@+id/history_list"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
 		android:divider="@color/colorE"
 		android:cacheColorHint="@color/transparent"
-		android:dividerHeight="1dp" />
+		android:dividerHeight="1dp"
+		android:background="@drawable/list_background"
+		android:listSelector="@color/transparent" />
 
 	<TextView
 		android:id="@+id/no_call_history"

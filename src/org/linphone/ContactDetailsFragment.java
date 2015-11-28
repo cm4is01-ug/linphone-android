@@ -109,7 +109,8 @@ public class ContactDetailsFragment extends Fragment implements OnClickListener 
 				getFragmentManager().popBackStackImmediate();
 			}
 		});
-		
+
+		back.requestFocusFromTouch();
 		return view;
 	}
 	

@@ -27,7 +27,9 @@
 				android:gravity="center"
 				android:padding="15dp"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"/>
+				android:layout_height="match_parent"
+				android:focusable="true"
+				android:background="@drawable/toolbar_button" />
 
 			<RelativeLayout
 				android:id="@+id/all_contacts_select"
@@ -53,7 +55,9 @@
 				android:gravity="center"
 				android:padding="15dp"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"/>
+				android:layout_height="match_parent"
+				android:background="@drawable/toolbar_button"
+				android:focusable="true" />
 
 			<RelativeLayout
 				android:id="@+id/linphone_contacts_select"
@@ -75,7 +79,9 @@
 			android:layout_height="match_parent"
 			android:layout_toLeftOf="@id/edit"
 			android:padding="15dp"
-			android:adjustViewBounds="true"/>
+			android:adjustViewBounds="true"
+			android:focusable="true"
+			android:background="@drawable/toolbar_button" />
 
 		<ImageView
 			android:id="@+id/edit"
@@ -86,7 +92,8 @@
 			android:layout_height="match_parent"
 			android:layout_alignParentRight="true"
 			android:padding="15dp"
-			android:adjustViewBounds="true"/>
+			android:adjustViewBounds="true"
+			android:focusable="true" />
 	</RelativeLayout>
 
 	<include layout="@layout/edit_list"/>
@@ -113,11 +120,12 @@
 			android:id="@+id/clearSearchField"
 			android:layout_width="30dp"
 			android:layout_height="30dp"
-			android:src="@drawable/clean_field_default"
+			android:src="@drawable/clean_field"
 			android:layout_centerVertical="true"
 			android:layout_alignParentRight="true"
 			android:paddingLeft="5dp"
-			android:paddingRight="5dp"/>
+			android:paddingRight="5dp"
+			android:focusable="true" />
 
 	</RelativeLayout>
 
@@ -128,11 +136,13 @@
 		<ListView
 			android:id="@+id/contactsList"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:layout_height="wrap_content"
 			android:divider="@color/colorE"
 			android:fastScrollAlwaysVisible="true"
 			android:fastScrollEnabled="true"
-			android:dividerHeight="1dp" />
+			android:dividerHeight="1dp"
+			android:background="@drawable/list_background"
+			android:listSelector="@color/transparent" />
 
 		<TextView
 			android:id="@+id/noSipContact"

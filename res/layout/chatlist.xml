@@ -20,7 +20,8 @@
 			android:layout_width="70dp"
 			android:layout_height="match_parent"
 			android:layout_alignParentLeft="true"
-			android:padding="15dp"/>
+			android:padding="15dp"
+			android:focusable="true" />
 
 		<ImageView
 			android:id="@+id/back_in_call"
@@ -30,7 +31,8 @@
 			android:layout_height="match_parent"
 			android:padding="15dp"
 			android:visibility="gone"
-			android:layout_toRightOf="@+id/new_discussion"/>
+			android:layout_toRightOf="@+id/new_discussion"
+			android:focusable="true" />
 
 		<ImageView
 			android:id="@+id/edit"
@@ -40,7 +42,8 @@
 			android:layout_width="70dp"
 			android:layout_height="match_parent"
 			android:layout_alignParentRight="true"
-			android:padding="15dp"/>
+			android:padding="15dp"
+			android:focusable="true" />
 	</RelativeLayout>
 
 	<include layout="@layout/edit_list"/>
@@ -48,10 +51,12 @@
     <ListView 
         android:id="@+id/chatList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:divider="@color/colorE"
         android:cacheColorHint="@color/transparent"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1dp"
+		android:background="@drawable/list_background"
+		android:listSelector="@color/transparent"/>
     
     <TextView 
         android:id="@+id/noChatHistory"

@@ -1244,6 +1244,21 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 				}
 			}
 		}
+		if (keyCode == KeyEvent.KEYCODE_MENU) {
+			if (sideMenu != null) {
+				FragmentTransaction transaction = getFragmentManager().beginTransaction();
+				if (sideMenu.isDrawerVisible(Gravity.LEFT)) {
+					openOrCloseSideMenu(false);
+					transaction.show(getFragmentManager().findFragmentByTag(currentFragment.toString()));
+				}
+				else {
+					openOrCloseSideMenu(true);
+					transaction.hide(getFragmentManager().findFragmentByTag(currentFragment.toString()));
+				}
+				transaction.commit();
+				return true;
+			}
+		}
 		return super.onKeyDown(keyCode, event);
 	}
 
@@ -1251,6 +1266,7 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 	public void openOrCloseSideMenu(boolean open) {
 		if(open) {
 			sideMenu.openDrawer(sideMenuContent);
+			sideMenu.requestFocusFromTouch();
 		} else {
 			sideMenu.closeDrawer(sideMenuContent);
 		}
@@ -1267,6 +1283,9 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 		sideMenuItemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+				FragmentTransaction transaction = getFragmentManager().beginTransaction();
+				transaction.show(getFragmentManager().findFragmentByTag(currentFragment.toString()));
+				transaction.commit();
 				if(sideMenuItemList.getAdapter().getItem(i).toString().equals("Settings")){
 					LinphoneActivity.instance().displaySettings();
 				}
@@ -1285,11 +1304,16 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 		menu.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
+				FragmentTransaction transaction = getFragmentManager().beginTransaction();
 				if(sideMenu.isDrawerVisible(Gravity.LEFT)){
 					sideMenu.closeDrawer(sideMenuContent);
+					transaction.show(getFragmentManager().findFragmentByTag(currentFragment.toString()));
 				} else {
 					sideMenu.openDrawer(sideMenuContent);
+					sideMenu.requestFocusFromTouch();
+					transaction.hide(getFragmentManager().findFragmentByTag(currentFragment.toString()));
 				}
+				transaction.commit();
 			}
 		});
 
@@ -1337,6 +1361,9 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 			defaultAccount.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View view) {
+					FragmentTransaction transaction = getFragmentManager().beginTransaction();
+					transaction.show(getFragmentManager().findFragmentByTag(currentFragment.toString()));
+					transaction.commit();
 					LinphoneActivity.instance().displayAccountSettings(0);
 					openOrCloseSideMenu(false);
 				}
@@ -1350,6 +1377,9 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 			defaultAccount.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View view) {
+					FragmentTransaction transaction = getFragmentManager().beginTransaction();
+					transaction.show(getFragmentManager().findFragmentByTag(currentFragment.toString()));
+					transaction.commit();
 					LinphoneActivity.instance().displayAccountSettings(LinphonePreferences.instance().getDefaultAccountIndex());
 					openOrCloseSideMenu(false);
 				}
@@ -1364,6 +1394,9 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 			accountsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+					FragmentTransaction transaction = getFragmentManager().beginTransaction();
+					transaction.show(getFragmentManager().findFragmentByTag(currentFragment.toString()));
+					transaction.commit();
 					int position = Integer.parseInt(view.getTag().toString());
 					LinphoneActivity.instance().displayAccountSettings(position);
 					openOrCloseSideMenu(false);

@@ -14,7 +14,8 @@
 		android:layout_width="70dp"
 		android:layout_height="match_parent"
 		android:padding="15dp"
-		android:layout_alignParentLeft="true"/>
+		android:layout_alignParentLeft="true"
+		android:focusable="true" />
 
 	<ImageView
 		android:id="@+id/delete"
@@ -24,7 +25,8 @@
 		android:layout_width="70dp"
 		android:layout_height="match_parent"
 		android:padding="15dp"
-		android:layout_alignParentRight="true"/>
+		android:layout_alignParentRight="true"
+		android:focusable="true" />
 
 	<ImageView
 		android:id="@+id/select_all"
@@ -34,7 +36,8 @@
 		android:layout_width="70dp"
 		android:layout_height="match_parent"
 		android:padding="15dp"
-		android:layout_toLeftOf="@id/delete"/>
+		android:layout_toLeftOf="@id/delete"
+		android:focusable="true" />
 
 	<ImageView
 		android:id="@+id/deselect_all"
@@ -45,6 +48,7 @@
 		android:layout_height="match_parent"
 		android:padding="15dp"
 		android:layout_toLeftOf="@id/delete"
-		android:visibility="gone"/>
+		android:visibility="gone"
+		android:focusable="true" />
 
 </RelativeLayout>

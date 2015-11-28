@@ -261,6 +261,7 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 			}
 		};
 
+		back.requestFocusFromTouch();
 		return view;
 	}
 
@@ -623,6 +624,7 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 			remoteComposing.setVisibility(chatRoom.isRemoteComposing() ? View.VISIBLE : View.GONE);
 			dispayMessageList();
 		}
+		back.requestFocusFromTouch();
 		super.onResume();
 	}
 

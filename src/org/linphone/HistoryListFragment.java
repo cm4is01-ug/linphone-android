@@ -110,6 +110,7 @@ public class HistoryListFragment extends Fragment implements OnClickListener, On
 		edit = (ImageView) view.findViewById(R.id.edit);
 		edit.setOnClickListener(this);
 
+		allCalls.requestFocusFromTouch();
 		return view;
 	}
 
@@ -204,6 +205,7 @@ public class HistoryListFragment extends Fragment implements OnClickListener, On
 			historyList.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
 			historyList.setAdapter(new CallHistoryAdapter(getActivity()));
 		}
+		allCalls.requestFocusFromTouch();
 	}
 
 	@Override

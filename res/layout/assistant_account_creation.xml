@@ -9,7 +9,7 @@
 		style="@style/font6"
 		android:textAllCaps="true"
 		android:contentDescription="@string/content_description_welcome"
-		android:paddingTop="20dp"
+		android:paddingTop="10dp"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"

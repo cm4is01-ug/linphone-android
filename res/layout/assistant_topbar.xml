@@ -3,7 +3,7 @@
 	android:id="@+id/topbar"
 	android:background="@color/colorF"
 	android:layout_width="match_parent"
-	android:layout_height="70dp">
+	android:layout_height="60dp">
 
 	<ImageView
 		android:id="@+id/back"
@@ -13,7 +13,9 @@
 		android:layout_height="match_parent"
 		android:padding="20dp"
 		android:layout_alignParentLeft="true"
-		android:layout_centerInParent="true"/>
+		android:layout_centerInParent="true"
+		android:focusable="true"
+		android:background="@drawable/toolbar_button" />
 
 	<TextView
 		android:text="@string/assistant_title"
@@ -29,8 +31,10 @@
 		android:contentDescription="@string/content_description_dialer"
 		android:layout_width="70dp"
 		android:layout_height="match_parent"
-		android:padding="20dp"
+		android:padding="15dp"
 		android:layout_centerInParent="true"
-		android:layout_alignParentRight="true"/>
+		android:layout_alignParentRight="true"
+		android:background="@drawable/toolbar_button"
+		android:focusable="true" />
 
 </RelativeLayout>

@@ -18,13 +18,14 @@
 
 		<ImageView
 			android:id="@+id/delete"
-			android:src="@drawable/delete_field_default"
+			android:src="@drawable/delete_field"
 			android:contentDescription="@string/content_description_add"
 			android:layout_alignParentRight="true"
 			android:layout_width="match_parent"
 			android:layout_height="30dp"
 			android:layout_weight="0.91"
 			android:layout_gravity="center"
-			android:paddingLeft="5dp"/>
+			android:paddingLeft="5dp"
+			android:focusable="true" />
 
 	</LinearLayout>
