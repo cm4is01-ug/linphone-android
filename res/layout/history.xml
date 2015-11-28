@@ -76,12 +76,8 @@
 			android:layout_width="70dp"
 			android:layout_height="match_parent"
 			android:layout_alignParentRight="true"
-<<<<<<< HEAD
-			android:padding="15dp"
+			android:padding="12dp"
 			android:focusable="true" />
-=======
-			android:padding="12dp"/>
->>>>>>> Fix landscape graphics
 	</RelativeLayout>
 
 	<include layout="@layout/edit_list"/>
