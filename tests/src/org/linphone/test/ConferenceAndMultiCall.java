@@ -14,12 +14,13 @@ import org.linphone.mediastream.Log;
 
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
+import android.test.suitebuilder.annotation.SmallTest;
 import android.util.DisplayMetrics;
 import android.view.View;
 
 public class ConferenceAndMultiCall extends SampleTest {
 
-	//@SmallTest
+	@SmallTest
 	@MediumTest
 	@LargeTest
 	public void testAInit() {
@@ -40,7 +41,7 @@ public class ConferenceAndMultiCall extends SampleTest {
 		Assert.assertFalse(LinphoneManager.getLc().isVideoEnabled());
 	}
 
-	//@SmallTest
+	@SmallTest
 	@MediumTest
 	@LargeTest
 	public void testBSimpleConference() {
