@@ -261,7 +261,6 @@ public class ContactEditorFragment extends Fragment {
 		ops = new ArrayList<ContentProviderOperation>();
 		lastName.requestFocus();
 
-		back.requestFocusFromTouch();
 		return view;
 	}
 	

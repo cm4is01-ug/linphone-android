@@ -104,7 +104,7 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 	private ImageView cancel;
 	private FragmentsAvailable currentFragment, nextFragment;
 	private List<FragmentsAvailable> fragmentsHistory;
-	private Fragment dialerFragment, messageListFragment;
+	private Fragment dialerFragment, messageListFragment, historyFragment, contactsListFragment;
 	private ChatFragment chatFragment;
 	private Fragment.SavedState dialerSavedState;
 	private boolean newProxyConfig;
@@ -352,13 +352,13 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 
 		switch (newFragmentType) {
 		case HISTORY_LIST:
-			newFragment = new HistoryListFragment();
+			newFragment = historyFragment = new HistoryListFragment();
 			break;
 		case HISTORY_DETAIL:
 			newFragment = new HistoryDetailFragment();
 			break;
 		case CONTACTS_LIST:
-			newFragment = new ContactsListFragment();
+			newFragment = contactsListFragment = new ContactsListFragment();
 			break;
 		case CONTACT_DETAIL:
 			newFragment = new ContactDetailsFragment();
@@ -429,9 +429,9 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 		}
 
 		if (newFragmentType != FragmentsAvailable.DIALER
-				|| newFragmentType != FragmentsAvailable.CONTACTS_LIST
-				|| newFragmentType != FragmentsAvailable.CHAT_LIST
-				|| newFragmentType != FragmentsAvailable.HISTORY_LIST) {
+				&& newFragmentType != FragmentsAvailable.CONTACTS_LIST
+				&& newFragmentType != FragmentsAvailable.CHAT_LIST
+				&& newFragmentType != FragmentsAvailable.HISTORY_LIST) {
 			transaction.addToBackStack(newFragmentType.toString());
 		}
 		transaction.replace(R.id.fragmentContainer, newFragment, newFragmentType.toString());
@@ -1243,15 +1243,13 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 					}
 				}
 			}
-		}
-		if (keyCode == KeyEvent.KEYCODE_MENU) {
+		} else if (keyCode == KeyEvent.KEYCODE_MENU) {
 			if (sideMenu != null) {
 				FragmentTransaction transaction = getFragmentManager().beginTransaction();
 				if (sideMenu.isDrawerVisible(Gravity.LEFT)) {
 					openOrCloseSideMenu(false);
 					transaction.show(getFragmentManager().findFragmentByTag(currentFragment.toString()));
-				}
-				else {
+				} else {
 					openOrCloseSideMenu(true);
 					transaction.hide(getFragmentManager().findFragmentByTag(currentFragment.toString()));
 				}
@@ -1479,6 +1477,25 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 			status.setImageResource(getStatusIconResource(lpc.getState()));
 			return view;
 		}
+	}
+
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+		if (e.getAction() == KeyEvent.ACTION_DOWN) {
+			if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
+				if (currentFragment == FragmentsAvailable.HISTORY_LIST && historyFragment != null) {
+					if (((HistoryListFragment) historyFragment).startHistoryDetail()) {
+						return true;
+					}
+				} else if (currentFragment == FragmentsAvailable.CONTACTS_LIST && contactsListFragment != null) {
+					if (((ContactsListFragment) contactsListFragment).toggleItemChecked()) {
+						return true;
+					}
+				}
+			}
+		}
+		return super.dispatchKeyEvent(e);
 	}
 }
 

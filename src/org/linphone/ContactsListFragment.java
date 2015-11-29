@@ -164,7 +164,7 @@ public class ContactsListFragment extends Fragment implements OnClickListener, O
 		});
 
 		changeContactsToggle();
-		allContacts.requestFocusFromTouch();
+		allContacts.requestFocus();
 		return view;
     }
 
@@ -452,7 +452,7 @@ public class ContactsListFragment extends Fragment implements OnClickListener, O
 		changeContactsToggle();
 
 		invalidate();
-		allContacts.requestFocusFromTouch();
+		allContacts.requestFocus();
 	}
 	
 	@Override
@@ -611,5 +611,16 @@ public class ContactsListFragment extends Fragment implements OnClickListener, O
 		public Object[] getSections() {
 			return indexer.getSections();
 		}
+	}
+
+	public boolean toggleItemChecked() {
+		int position = contactsList.getSelectedItemPosition();
+		if (!contactsList.isFocused() || position < 0 || position > contactsList.getCount() - 1) {
+			return false;
+		} else if (isEditMode) {
+			contactsList.setItemChecked(position, !contactsList.isItemChecked(position));
+			return true;
+		}
+		return false;
 	}
 }

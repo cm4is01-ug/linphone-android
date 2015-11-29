@@ -87,7 +87,7 @@ public class HistoryDetailFragment extends Fragment implements OnClickListener {
 		
 		displayHistory(status, callTime, callDate);
 
-		back.requestFocusFromTouch();
+		back.requestFocus();
 		return view;
 	}
 	

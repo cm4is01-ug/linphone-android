@@ -110,7 +110,7 @@ public class ContactDetailsFragment extends Fragment implements OnClickListener 
 			}
 		});
 
-		back.requestFocusFromTouch();
+		back.requestFocus();
 		return view;
 	}
 	

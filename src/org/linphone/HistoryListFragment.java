@@ -110,7 +110,7 @@ public class HistoryListFragment extends Fragment implements OnClickListener, On
 		edit = (ImageView) view.findViewById(R.id.edit);
 		edit.setOnClickListener(this);
 
-		allCalls.requestFocusFromTouch();
+		allCalls.requestFocus();
 		return view;
 	}
 
@@ -205,7 +205,7 @@ public class HistoryListFragment extends Fragment implements OnClickListener, On
 			historyList.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
 			historyList.setAdapter(new CallHistoryAdapter(getActivity()));
 		}
-		allCalls.requestFocusFromTouch();
+		allCalls.requestFocus();
 	}
 
 	@Override
@@ -502,5 +502,28 @@ public class HistoryListFragment extends Fragment implements OnClickListener, On
 		CheckBox select;
 		ImageView callDirection;
 		ImageView contactPicture;
+	}
+
+	public boolean startHistoryDetail() {
+		int position = historyList.getSelectedItemPosition();
+		if (!historyList.isFocused() || position < 0 || position > mLogs.size() - 1) {
+			return false;
+		} else if (isEditMode) {
+			historyList.setItemChecked(position, !historyList.isItemChecked(position));
+		} else {
+			final LinphoneCallLog log = mLogs.get(position);
+			final LinphoneAddress address;
+			if (log.getDirection() == CallDirection.Incoming) {
+				address = log.getFrom();
+			} else {
+				address = log.getTo();
+			}
+			Contact c = ContactsManager.getInstance().findContactWithAddress(getActivity().getContentResolver(), address);
+			final String sipUri = address.asStringUriOnly();
+			if (LinphoneActivity.isInstanciated()) {
+				LinphoneActivity.instance().displayHistoryDetail(sipUri, log);
+			}
+		}
+		return true;
 	}
 }

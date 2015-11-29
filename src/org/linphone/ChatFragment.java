@@ -225,6 +225,9 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 				}
 			});
 		}
+		if (!newChatConversation) {
+			back.requestFocus();
+		}
 		
 		mListener = new LinphoneCoreListenerBase(){
 			@Override
@@ -260,7 +263,6 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 			}
 		};
 
-		back.requestFocusFromTouch();
 		return view;
 	}
 
@@ -614,7 +616,7 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 			initChatRoom(sipUri);
 			remoteComposing.setVisibility(chatRoom.isRemoteComposing() ? View.VISIBLE : View.GONE);
 		}
-		back.requestFocusFromTouch();
+		back.requestFocus();
 		super.onResume();
 	}
 
