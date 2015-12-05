@@ -526,6 +526,7 @@ public class ChatListFragment extends Fragment implements OnClickListener, OnIte
 				});
 				if(chatList.isItemChecked(position)) {
 					enabledDeleteButton(true);
+					select.setChecked(true);
 				} else {
 					select.setChecked(false);
 				}
@@ -537,6 +538,17 @@ public class ChatListFragment extends Fragment implements OnClickListener, OnIte
 			
 			return view;
 		}
+	}
+
+	public boolean toggleItemChecked() {
+		int position = chatList.getSelectedItemPosition();
+		if (!chatList.isFocused() || position < 0 || position > chatList.getCount() - 1) {
+			return false;
+		} else if (isEditMode) {
+			chatList.setItemChecked(position, !chatList.isItemChecked(position));
+			return true;
+		}
+		return false;
 	}
 }
 

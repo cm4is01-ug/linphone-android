@@ -255,9 +255,15 @@ public class CallIncomingActivity extends Activity implements LinphoneSliderTrig
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (LinphoneManager.isInstanciated() && (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME)) {
-			LinphoneManager.getLc().terminateCall(mCall);
-			finish();
+		if (LinphoneManager.isInstanciated()) {
+			if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
+				LinphoneManager.getLc().terminateCall(mCall);
+				finish();
+				return true;
+			} else if (keyCode == KeyEvent.KEYCODE_CALL) {
+				answer();
+				return true;
+			}
 		}
 		return super.onKeyDown(keyCode, event);
 	}

@@ -511,8 +511,8 @@ public class HistoryListFragment extends Fragment implements OnClickListener, On
 		} else if (isEditMode) {
 			historyList.setItemChecked(position, !historyList.isItemChecked(position));
 		} else {
-			final LinphoneCallLog log = mLogs.get(position);
-			final LinphoneAddress address;
+			LinphoneCallLog log = mLogs.get(position);
+			LinphoneAddress address;
 			if (log.getDirection() == CallDirection.Incoming) {
 				address = log.getFrom();
 			} else {
@@ -522,6 +522,25 @@ public class HistoryListFragment extends Fragment implements OnClickListener, On
 			final String sipUri = address.asStringUriOnly();
 			if (LinphoneActivity.isInstanciated()) {
 				LinphoneActivity.instance().displayHistoryDetail(sipUri, log);
+			}
+		}
+		return true;
+	}
+
+	public boolean startOutgoingCall() {
+		int position = historyList.getSelectedItemPosition();
+		if (isEditMode || position < 0 || position > mLogs.size() - 1) {
+			return false;
+		} else {
+			LinphoneCallLog log = mLogs.get(position);
+			LinphoneAddress address;
+			if (log.getDirection() == CallDirection.Incoming) {
+				address = log.getFrom();
+			} else {
+				address = log.getTo();
+			}
+			if (LinphoneActivity.isInstanciated()) {
+				LinphoneActivity.instance().setAddresGoToDialerAndCall(address.asStringUriOnly(), address.getDisplayName(), null);
 			}
 		}
 		return true;

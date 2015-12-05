@@ -47,6 +47,8 @@ import org.linphone.core.Reason;
 import org.linphone.mediastream.Log;
 import org.linphone.assistant.RemoteProvisioningLoginActivity;
 import org.linphone.ui.AddressText;
+import org.linphone.ui.CallButton;
+import org.linphone.ui.EraseButton;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -1302,16 +1304,16 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 		menu.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				FragmentTransaction transaction = getFragmentManager().beginTransaction();
-				if(sideMenu.isDrawerVisible(Gravity.LEFT)){
-					sideMenu.closeDrawer(sideMenuContent);
-					transaction.show(getFragmentManager().findFragmentByTag(currentFragment.toString()));
-				} else {
-					sideMenu.openDrawer(sideMenuContent);
-					sideMenu.requestFocusFromTouch();
-					transaction.hide(getFragmentManager().findFragmentByTag(currentFragment.toString()));
-				}
-				transaction.commit();
+			FragmentTransaction transaction = getFragmentManager().beginTransaction();
+			if(sideMenu.isDrawerVisible(Gravity.LEFT)){
+				sideMenu.closeDrawer(sideMenuContent);
+				transaction.show(getFragmentManager().findFragmentByTag(currentFragment.toString()));
+			} else {
+				sideMenu.openDrawer(sideMenuContent);
+				sideMenu.requestFocusFromTouch();
+				transaction.hide(getFragmentManager().findFragmentByTag(currentFragment.toString()));
+			}
+			transaction.commit();
 			}
 		});
 
@@ -1482,6 +1484,18 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent e) {
 		int keyCode = e.getKeyCode();
+		if (sideMenu.isDrawerVisible(Gravity.LEFT)) {
+			if (e.getAction() == KeyEvent.ACTION_DOWN
+				&& keyCode == KeyEvent.KEYCODE_BACK) {
+				sideMenu.closeDrawer(sideMenuContent);
+				FragmentTransaction transaction = getFragmentManager().beginTransaction();
+				transaction.show(getFragmentManager().findFragmentByTag(currentFragment.toString()));
+				transaction.commit();
+				return true;
+			}
+			return super.dispatchKeyEvent(e);
+		}
+
 		if (e.getAction() == KeyEvent.ACTION_DOWN) {
 			if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
 				if (currentFragment == FragmentsAvailable.HISTORY_LIST && historyFragment != null) {
@@ -1490,6 +1504,30 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 					}
 				} else if (currentFragment == FragmentsAvailable.CONTACTS_LIST && contactsListFragment != null) {
 					if (((ContactsListFragment) contactsListFragment).toggleItemChecked()) {
+						return true;
+					}
+				} else if (currentFragment == FragmentsAvailable.CHAT_LIST && messageListFragment != null) {
+					if (((ChatListFragment) messageListFragment).toggleItemChecked()) {
+						return true;
+					}
+				} else if (currentFragment == FragmentsAvailable.CHAT && chatFragment != null) {
+					if (chatFragment.toggleItemChecked()) {
+						return true;
+					}
+				}
+			} else 	if (keyCode == KeyEvent.KEYCODE_BACK) {
+				if (currentFragment == FragmentsAvailable.DIALER) {
+					if (((AddressText) findViewById(R.id.address)).getText().length() > 0) {
+						((EraseButton) findViewById(R.id.erase)).performClick();
+						return true;
+					}
+				}
+			} else if (keyCode == KeyEvent.KEYCODE_CALL) {
+				if (currentFragment == FragmentsAvailable.DIALER) {
+					((CallButton) findViewById(R.id.call)).performClick();
+					return true;
+				} else if (currentFragment == FragmentsAvailable.HISTORY_LIST && historyFragment != null) {
+					if (((HistoryListFragment) historyFragment).startOutgoingCall()) {
 						return true;
 					}
 				}

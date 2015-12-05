@@ -1097,4 +1097,15 @@ public class ChatFragment extends Fragment implements OnClickListener, LinphoneC
 
 	@Override
 	public void onLinphoneChatMessageFileTransferProgressChanged(LinphoneChatMessage msg, LinphoneContent content, int offset, int total) {}
+
+	public boolean toggleItemChecked() {
+		int position = messagesList.getSelectedItemPosition();
+		if (!messagesList.isFocused() || position < 0 || position > messagesList.getCount() - 1) {
+			return false;
+		} else if (isEditMode) {
+			messagesList.setItemChecked(position, !messagesList.isItemChecked(position));
+			return true;
+		}
+		return false;
+	}
 }
