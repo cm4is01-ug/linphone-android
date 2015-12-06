@@ -48,7 +48,9 @@ import org.linphone.mediastream.Log;
 import org.linphone.assistant.RemoteProvisioningLoginActivity;
 import org.linphone.ui.AddressText;
 import org.linphone.ui.CallButton;
+import org.linphone.ui.Digit;
 import org.linphone.ui.EraseButton;
+import org.linphone.ui.Numpad;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -1494,6 +1496,16 @@ public class LinphoneActivity extends Activity implements OnClickListener, Conta
 				return true;
 			}
 			return super.dispatchKeyEvent(e);
+		}
+
+		if (currentFragment == FragmentsAvailable.DIALER) {
+			Digit v = ((Numpad) findViewById(R.id.numpad)).hardkey(e);
+			if (v != null) {
+				if (e.getAction() == KeyEvent.ACTION_DOWN) {
+					v.performClick();
+				}
+				return true;
+			}
 		}
 
 		if (e.getAction() == KeyEvent.ACTION_DOWN) {

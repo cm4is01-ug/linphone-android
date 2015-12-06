@@ -31,6 +31,7 @@ import org.linphone.core.LinphoneCoreListenerBase;
 import org.linphone.core.LinphonePlayer;
 import org.linphone.mediastream.Log;
 import org.linphone.mediastream.video.capture.hwconf.AndroidCameraConfiguration;
+import org.linphone.ui.Digit;
 import org.linphone.ui.Numpad;
 import org.w3c.dom.Text;
 
@@ -1687,5 +1688,19 @@ public class CallActivity extends Activity implements OnClickListener {
 			}
 		}
 		conferenceList.setVisibility(View.VISIBLE);
+	}
+
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent e) {
+		if (numpad != null) {
+			Digit v = numpad.hardkey(e);
+			if (v != null) {
+				if (e.getAction() == KeyEvent.ACTION_DOWN) {
+					v.performClick();
+				}
+				return true;
+			}
+		}
+		return super.dispatchKeyEvent(e);
 	}
 }
