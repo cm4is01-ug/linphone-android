@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="history_date_format">d MMM</string>
-  <string name="history_detail_date_format">EEEE MMM d HH:mm</string>
-  <string name="messages_date_format">d MMM HH:mm</string>
-  <string name="today_date_format">HH:mm</string>
+  <string name="history_date_format">M月d日</string>
+  <string name="history_detail_date_format">M月d日(E) KK:mm</string>
+  <string name="messages_date_format">M月d日 KK:mm</string>
+  <string name="messages_list_date_format">MM/dd</string>
+  <string name="today_date_format">KK:mm</string>
   <string name="picture_name_format">linphone-mms-%s.jpg</string>
   <string name="app_name">Linphone</string>
   <string name="service_name">Linphone サービス</string>

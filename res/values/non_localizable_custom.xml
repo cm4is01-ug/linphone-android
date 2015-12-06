@@ -76,7 +76,7 @@
 
 
 	<bool name="enable_call_notification">true</bool>
-	<bool name="kill_service_with_task_manager">true</bool>
+	<bool name="kill_service_with_task_manager">false</bool>
 
 	<bool name="hash_images_as_name_before_upload">true</bool>
 
